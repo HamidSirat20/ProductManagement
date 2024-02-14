@@ -13,16 +13,19 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Margin="2" Background="WhiteSmoke" Width="250" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="Gray">
             <StackPanel>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome">Home</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees">Employees List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers">Customers List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts">Products List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome" FontFamily="Times New Roman">Home</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees" FontFamily="Times New Roman">Employees List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers" FontFamily="Times New Roman">Customers List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts" FontFamily="Times New Roman">Products List</Button>
                 <Image Margin="10,40" Height="150" Width="150" Source="Resources/Logo.png" />
             </StackPanel>
 
         </Border>
         <Border Grid.Column="1" Margin="2" Background="WhiteSmoke" Name="HomePanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
-
+            <StackPanel HorizontalAlignment="Stretch" Background="White">
+                <Label FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Times New Roman" Margin="0,50,0,0">Welcome to the Product Management App</Label>
+                <Image Source="Resources/BannerImage.png" />
+            </StackPanel>
         </Border>
 
 
