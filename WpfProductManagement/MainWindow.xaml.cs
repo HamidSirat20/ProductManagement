@@ -20,5 +20,40 @@ namespace WpfProductManagement
         {
             InitializeComponent();
         }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            HomePanel.Visibility = Visibility.Visible;
+            EmployeesPanel.Visibility = Visibility.Collapsed;
+            CustomersPanel.Visibility = Visibility.Collapsed;
+            ProductsPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnEmployees_Click(object sender, RoutedEventArgs e)
+        {
+            HomePanel.Visibility = Visibility.Collapsed;
+            EmployeesPanel.Visibility = Visibility.Visible;
+            CustomersPanel.Visibility = Visibility.Collapsed;
+            ProductsPanel.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void btnCustomers_Click(object sender, RoutedEventArgs e)
+        {
+            HomePanel.Visibility = Visibility.Collapsed;
+            EmployeesPanel.Visibility = Visibility.Collapsed;
+            CustomersPanel.Visibility = Visibility.Visible;
+            ProductsPanel.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void btnProducts_Click(object sender, RoutedEventArgs e)
+        {
+            HomePanel.Visibility = Visibility.Collapsed;
+            EmployeesPanel.Visibility = Visibility.Collapsed;
+            CustomersPanel.Visibility = Visibility.Collapsed;
+            ProductsPanel.Visibility = Visibility.Visible;
+
+        }
     }
 }

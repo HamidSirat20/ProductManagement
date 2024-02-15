@@ -13,21 +13,29 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Margin="2" Background="WhiteSmoke" Width="250" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="Gray">
             <StackPanel>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome" FontFamily="Times New Roman">Home</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees" FontFamily="Times New Roman">Employees List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers" FontFamily="Times New Roman">Customers List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts" FontFamily="Times New Roman">Products List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome" FontFamily="Times New Roman" Click="btnHome_Click">Home</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees" FontFamily="Times New Roman" Click="btnEmployees_Click">Employees List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers" FontFamily="Times New Roman" Click="btnCustomers_Click">Customers List</Button>
+                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts" FontFamily="Times New Roman" Click="btnProducts_Click">Products List</Button>
                 <Image Margin="10,40" Height="150" Width="150" Source="Resources/Logo.png" />
             </StackPanel>
 
         </Border>
-        <Border Grid.Column="1" Margin="2" Background="WhiteSmoke" Name="HomePanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+        <Border Grid.Column="1" Visibility="Visible" Margin="2" Background="WhiteSmoke" Name="HomePanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
             <StackPanel HorizontalAlignment="Stretch" Background="White">
                 <Label FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Times New Roman" Margin="0,50,0,0">Welcome to the Product Management App</Label>
                 <Image Source="Resources/BannerImage.png" />
             </StackPanel>
         </Border>
-
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="EmployeesPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+            <Label HorizontalAlignment="Center" FontSize="46">We are in Employees Page</Label>
+        </Border>
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="CustomersPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+            <Label HorizontalAlignment="Center" FontSize="46">We are in Customers Page</Label>
+        </Border>
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="ProductsPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+            <Label HorizontalAlignment="Center" FontSize="46">We are in Products Page</Label>
+        </Border>
 
     </Grid>
 </Window>
