@@ -8,6 +8,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProductManagement.Domain.InterfaceModel; 
+using ProductManagement.Domain;
+using ProductManagement.Domain.Models;
+
 
 namespace WpfProductManagement
 {
@@ -16,6 +20,13 @@ namespace WpfProductManagement
     /// </summary>
     public partial class MainWindow : Window
     {
+        EmployeeService employeeService = new EmployeeService();
+        CustomerService customerService = new CustomerService();
+        ProductService productService = new ProductService();
+
+        List<Employee> employees = new List<Employee>();
+        List<Customer> customers = new List<Customer>();
+        List<Product> products = new List<Product>();
         public MainWindow()
         {
             InitializeComponent();
