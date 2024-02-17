@@ -14,9 +14,9 @@ public class Employee : IPerson
 
     public string GetBasicInfo()
     {
-        return string.Format($"FirstName: {FirstName} LastName: " +
-            $"{LastName} Tel: {PhoneNumber} Address: {Address} Dept: " +
-            $"{Department} SalaryL {BaseSalary}");
+        return string.Format($"FirstName: {FirstName}\nLastName: " +
+            $"{LastName}\nTel: {PhoneNumber}\nAddress: {Address}\nDept: " +
+            $"{Department}\nSalary: $ {BaseSalary}");
     }
 }
 

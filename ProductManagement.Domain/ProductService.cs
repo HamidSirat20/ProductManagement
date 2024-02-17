@@ -1,10 +1,11 @@
 ﻿using ProductManagement.Domain.Models;
+using System.Collections.ObjectModel;
 
 namespace ProductManagement.Domain;
 
 public class ProductService
 {
-    public List<Product> _products { get; set; } = new List<Product>();
+    public ObservableCollection<Product> _products { get; set; } = new ObservableCollection<Product>();
     public ProductService()
     {
         ReadProducts();

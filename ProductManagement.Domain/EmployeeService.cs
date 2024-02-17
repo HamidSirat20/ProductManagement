@@ -1,10 +1,11 @@
 ﻿using ProductManagement.Domain.Models;
+using System.Collections.ObjectModel;
 
 namespace ProductManagement.Domain;
 
 public class EmployeeService
 {
-    public List<Employee> Employees { get; set; } = new List<Employee>();
+    public ObservableCollection<Employee> Employees { get; set; } = new ObservableCollection<Employee>();
     public EmployeeService()
     {
         ReadEmployees();
@@ -56,11 +57,14 @@ public class EmployeeService
             Department = Department.Management,
             BaseSalary = 60000m
         };
-
+       
         Employees.Add(emp1);
         Employees.Add(emp2);
         Employees.Add(emp3);
         Employees.Add(emp4);
+       
+
+
     }
     public void AddProduct(Employee employee)
     {

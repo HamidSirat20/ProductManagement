@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using ProductManagement.Domain.InterfaceModel; 
 using ProductManagement.Domain;
 using ProductManagement.Domain.Models;
+using System.Collections.ObjectModel;
 
 
 namespace WpfProductManagement
@@ -24,14 +25,24 @@ namespace WpfProductManagement
         CustomerService customerService = new CustomerService();
         ProductService productService = new ProductService();
 
-        List<Employee> employees = new List<Employee>();
-        List<Customer> customers = new List<Customer>();
-        List<Product> products = new List<Product>();
+        ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        ObservableCollection<Customer> customers = new ObservableCollection<Customer>();
+        ObservableCollection<Product> products = new ObservableCollection<Product>();
+        public Employee CurrentEmployee { get; set; } = new Employee();
+        public Customer CurrentCustomer { get; set; } = new Customer();
+        public Product CurrentProduct { get; set; } = new Product();
         public MainWindow()
         {
             InitializeComponent();
+            FillData();
+            EmployeesGrid.ItemsSource = employees;
         }
-
+        private void FillData()
+        {
+            employees = employeeService.Employees;
+            customers = customerService.customers;
+            products = productService._products;
+        }
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
             HomePanel.Visibility = Visibility.Visible;
@@ -64,6 +75,30 @@ namespace WpfProductManagement
             EmployeesPanel.Visibility = Visibility.Collapsed;
             CustomersPanel.Visibility = Visibility.Collapsed;
             ProductsPanel.Visibility = Visibility.Visible;
+
+        }
+
+        private void EmployeesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EmployeesGrid.SelectedIndex >=0)
+            {
+                CurrentEmployee = EmployeesGrid.SelectedItem as Employee;
+                EmployeeLabel.Content = CurrentEmployee.GetBasicInfo();
+            }
+        }
+
+        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

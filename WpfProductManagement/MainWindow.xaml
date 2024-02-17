@@ -11,12 +11,12 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.Column="0" Margin="2" Background="WhiteSmoke" Width="250" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="Gray">
+        <Border Grid.Column="0" Margin="2" Background="#F5F5F5" Width="250" HorizontalAlignment="Center" BorderThickness="2" BorderBrush="Gray">
             <StackPanel>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome" FontFamily="Times New Roman" Click="btnHome_Click">Home</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees" FontFamily="Times New Roman" Click="btnEmployees_Click">Employees List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers" FontFamily="Times New Roman" Click="btnCustomers_Click">Customers List</Button>
-                <Button Margin="20,30" Background="#60000000" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts" FontFamily="Times New Roman" Click="btnProducts_Click">Products List</Button>
+                <Button Margin="20,30" Background="#3467eb" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnHome" FontFamily="Times New Roman" Click="btnHome_Click">Home</Button>
+                <Button Margin="20,30" Background="#4CAF50" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnEmployees" FontFamily="Times New Roman" Click="btnEmployees_Click">Employees List</Button>
+                <Button Margin="20,30" Background="#03A9F4" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnCustomers" FontFamily="Times New Roman" Click="btnCustomers_Click">Customers List</Button>
+                <Button Margin="20,30" Background="#FF9800" Height="50" Foreground="White" FontSize="22" FontWeight="Bold" Name="btnProducts" FontFamily="Times New Roman" Click="btnProducts_Click">Products List</Button>
                 <Image Margin="10,40" Height="150" Width="150" Source="Resources/Logo.png" />
             </StackPanel>
 
@@ -27,13 +27,35 @@
                 <Image Source="Resources/BannerImage.png" />
             </StackPanel>
         </Border>
-        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="EmployeesPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
-            <Label HorizontalAlignment="Center" FontSize="46">We are in Employees Page</Label>
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#E8F5E9" Name="EmployeesPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+            <StackPanel HorizontalAlignment="Stretch" Background="#E8F5E9" Margin="15">
+                <Label HorizontalAlignment="Center" FontSize="46">Employee's Lists</Label>
+                <DataGrid Margin="5" Name="EmployeesGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="EmployeesGrid_SelectionChanged">
+                    
+                </DataGrid>
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Margin="5" Grid.Row="0">
+                        <Label Margin="2" FontWeight="Bold"> More Info: </Label>
+                        <Label Margin="2" Content="---" Name="EmployeeLabel"></Label>
+                    </WrapPanel>
+                    <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+                        <Button Margin="10" Height="50" Width="150" Background="LightGreen" Name="btnAddEmployee" Click="btnAddEmployee_Click">Add New Employee</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="Salmon" Name="btnDeleteEmployee" Click="btnDeleteEmployee_Click">Delete Employee</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="WhiteSmoke" Name="btnEditEmployee" Click="btnEditEmployee_Click">Edit Employee</Button>
+
+                    </DockPanel>
+                    
+                </Grid>
+            </StackPanel>
         </Border>
-        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="CustomersPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#E3F2FD" Name="CustomersPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
             <Label HorizontalAlignment="Center" FontSize="46">We are in Customers Page</Label>
         </Border>
-        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="WhiteSmoke" Name="ProductsPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
+        <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#FFF3E0" Name="ProductsPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
             <Label HorizontalAlignment="Center" FontSize="46">We are in Products Page</Label>
         </Border>
 

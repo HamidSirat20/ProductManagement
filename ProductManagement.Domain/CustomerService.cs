@@ -1,10 +1,11 @@
 ﻿using ProductManagement.Domain.Models;
+using System.Collections.ObjectModel;
 
 namespace ProductManagement.Domain;
 
 public class CustomerService
 {
-    public List<Customer> customers { get; set; } = new List<Customer>();
+    public ObservableCollection<Customer> customers { get; set; } = new ObservableCollection<Customer>();
     public CustomerService()
     {
         ReadCustomers();
