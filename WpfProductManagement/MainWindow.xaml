@@ -53,10 +53,54 @@
             </StackPanel>
         </Border>
         <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#E3F2FD" Name="CustomersPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
-            <Label HorizontalAlignment="Center" FontSize="46">We are in Customers Page</Label>
+            <StackPanel HorizontalAlignment="Stretch" Background="#E3F2FD" Margin="15">
+                <Label HorizontalAlignment="Center" FontSize="46">Customer's Lists</Label>
+                <DataGrid Margin="5" Name="CustomersGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="CustomersGrid_SelectionChanged">
+
+                </DataGrid>
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Margin="5" Grid.Row="0">
+                        <Label Margin="2" FontWeight="Bold">More Info:</Label>
+                        <Label Margin="2" Content="---" Name="CustomerLabel"></Label>
+                    </WrapPanel>
+                    <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+                        <Button Margin="10" Height="50" Width="150" Background="LightGreen" Name="btnAddCustomer" Click="btnAddCustomer_Click">Add New Customer</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="Salmon" Name="btnDeleteCustomer" Click="btnDeleteCustomer_Click">Delete Customer</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="WhiteSmoke" Name="btnEditCustomer" Click="btnEditCustomer_Click">Edit Customer</Button>
+
+                    </DockPanel>
+
+                </Grid>
+            </StackPanel>
         </Border>
         <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#FFF3E0" Name="ProductsPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
-            <Label HorizontalAlignment="Center" FontSize="46">We are in Products Page</Label>
+            <StackPanel HorizontalAlignment="Stretch" Background="#FFF3E0" Margin="15">
+                <Label HorizontalAlignment="Center" FontSize="46">Product's Lists</Label>
+                <DataGrid Margin="5" Name="ProductsGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="ProductsGrid_SelectionChanged">
+
+                </DataGrid>
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <WrapPanel Margin="5" Grid.Row="0">
+                        <Label Margin="2" FontWeight="Bold">More Info:</Label>
+                        <Label Margin="2" Content="---" Name="ProductLabel"></Label>
+                    </WrapPanel>
+                    <DockPanel HorizontalAlignment="Center" Margin="20" Grid.Row="1">
+                        <Button Margin="10" Height="50" Width="150" Background="LightGreen" Name="btnAddProduct" Click="btnAddProduct_Click">Add New Product</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="Salmon" Name="btnDeleteProduct" Click="btnDeleteProduct_Click" >Delete Product</Button>
+                        <Button Margin="10" Height="50" Width="150" Background="WhiteSmoke" Name="btnEditProduct" Click="btnEditProduct_Click">Edit Product</Button>
+
+                    </DockPanel>
+
+                </Grid>
+            </StackPanel>
         </Border>
 
     </Grid>

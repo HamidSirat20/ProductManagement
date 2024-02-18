@@ -36,6 +36,8 @@ namespace WpfProductManagement
             InitializeComponent();
             FillData();
             EmployeesGrid.ItemsSource = employees;
+            CustomersGrid.ItemsSource = customers;
+            ProductsGrid.ItemsSource = products;
         }
         private void FillData()
         {
@@ -98,6 +100,56 @@ namespace WpfProductManagement
         }
 
         private void btnDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CustomersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CustomersGrid.SelectedIndex >= 0)
+            {
+                CurrentCustomer = CustomersGrid.SelectedItem as Customer;
+                CustomerLabel.Content = CurrentCustomer.GetBasicInfo();
+            }
+
+        }
+
+        private void btnEditCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ProductsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProductsGrid.SelectedIndex >= 0)
+            {
+                CurrentProduct = ProductsGrid.SelectedItem as Product;
+                ProductLabel.Content = CurrentProduct.GetBasicInfo();
+            }
+
+        }
+
+        private void btnEditProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
 
         }
