@@ -91,7 +91,8 @@ namespace WpfProductManagement
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            AddEditEmployee addEditEmployee = new AddEditEmployee(employeeService);
+            addEditEmployee.ShowDialog();
         }
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
@@ -101,7 +102,12 @@ namespace WpfProductManagement
 
         private void btnDeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
-
+            if (EmployeesGrid.SelectedIndex >= 0)
+            {
+                CurrentEmployee = EmployeesGrid.SelectedItem as Employee;
+                employeeService.RemoveEmployee(CurrentEmployee.Id);
+                EmployeeLabel.Content = "---";
+            }
         }
 
         private void CustomersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

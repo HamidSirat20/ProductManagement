@@ -66,7 +66,7 @@ public class EmployeeService
 
 
     }
-    public void AddProduct(Employee employee)
+    public void AddEmployee(Employee employee)
     {
         if (employee == null)
         {
@@ -78,7 +78,7 @@ public class EmployeeService
         }
         Employees.Add(employee);
     }
-    public void RemoveProduct(int id)
+    public void RemoveEmployee(int id)
     {
         if (id == null)
         {
@@ -94,7 +94,7 @@ public class EmployeeService
             Employees.Remove(foundEmployee);
         }
     }
-    public void EditProduct(Employee employee)
+    public void EditEmployee(Employee employee)
     {
         var oldProduct = Employees.First(t => t.Id == employee.Id);
         int index = Employees.IndexOf(oldProduct);
