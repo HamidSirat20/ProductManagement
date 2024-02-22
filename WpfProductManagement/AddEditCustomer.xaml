@@ -1,11 +1,11 @@
-﻿<Window x:Class="WpfProductManagement.AddEditEmployee"
+﻿<Window x:Class="WpfProductManagement.AddEditCustomer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProductManagement"
         mc:Ignorable="d"
-        Title="AddEditEmployee" Height="550" Width="800">
+        Title="AddEditCustomer" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="20">
             <DockPanel Margin="10">
@@ -24,29 +24,10 @@
                 <Label Margin="10">Address:</Label>
                 <TextBox HorizontalAlignment="Right" Width="500" Name="tbAddress"/>
             </DockPanel>
-            <DockPanel Margin="10">
-                <Label Margin="10">Department:</Label>
-                <ComboBox HorizontalAlignment="Right" Width="500" Name="comboDepartment">
-                    <ComboBoxItem>Production</ComboBoxItem>
-                    <ComboBoxItem>Sales</ComboBoxItem>
-                    <ComboBoxItem>Advertisement</ComboBoxItem>
-                    <ComboBoxItem>Management</ComboBoxItem>
-                </ComboBox>
-            </DockPanel>
-            <DockPanel Margin="10">
-                <Label Margin="10">Base Salary:</Label>
-                <TextBox HorizontalAlignment="Right" Width="500" Name="tbSalary"/>
-            </DockPanel>
             <DockPanel Margin="10" HorizontalAlignment="Right" >
                 <Button Background="PaleVioletRed" Margin="10" Height="50" Width="120" Name="btnCancel" Click="btnCancel_Click" >Cancel</Button>
-                <Button Background="GreenYellow" Margin="10" Height="50" Width="120" Name="btnOk" Click="btnOk_Click">Ok</Button>
+                <Button Background="GreenYellow"    Margin="10" Height="50" Width="120" Name="btnOk" Click="btnOk_Click">Ok</Button>
             </DockPanel>
         </StackPanel>
-
-
-
-
-
-
     </Grid>
 </Window>

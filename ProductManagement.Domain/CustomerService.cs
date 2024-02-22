@@ -55,7 +55,7 @@ public class CustomerService
         customers.Add(cust3);
         customers.Add(cust4);
     }
-    public void AddProduct(Customer customer)
+    public void AddCustomer(Customer customer)
     {
         if (customer == null)
         {
@@ -67,7 +67,7 @@ public class CustomerService
         }
         customers.Add(customer);
     }
-    public void RemoveProduct(int id)
+    public void RemoveCustomer(int id)
     {
         if (id == null)
         {
@@ -83,7 +83,7 @@ public class CustomerService
             customers.Remove(foundEmployee);
         }
     }
-    public void EditProduct(Customer customer)
+    public void EditCustomer(Customer customer)
     {
         var oldProduct = customers.First(t => t.Id == customer.Id);
         int index = customers.IndexOf(oldProduct);

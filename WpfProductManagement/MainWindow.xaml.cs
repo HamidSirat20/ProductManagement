@@ -128,17 +128,29 @@ namespace WpfProductManagement
 
         private void btnEditCustomer_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (CustomersGrid.SelectedIndex >= 0)
+            {
+                CurrentCustomer = CustomersGrid.SelectedItem as Customer;
+                AddEditCustomer addEditCustomer = new AddEditCustomer(customerService, CurrentCustomer);
+                addEditCustomer.ShowDialog();
+
+            }
         }
 
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            AddEditCustomer addEditCustomer = new AddEditCustomer(customerService);
+            addEditCustomer.ShowDialog();
         }
 
         private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            if (CustomersGrid.SelectedIndex >= 0)
+            {
+                CurrentCustomer = CustomersGrid.SelectedItem as Customer;
+                customerService.RemoveCustomer(CurrentCustomer.Id);
+                CustomerLabel.Content = "---";
+            }
         }
 
         private void ProductsGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -153,17 +165,29 @@ namespace WpfProductManagement
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
+            if (ProductsGrid.SelectedIndex >= 0)
+            {
+                CurrentProduct = ProductsGrid.SelectedItem as Product;
+                AddEditProduct addEditProduct = new AddEditProduct(productService, CurrentProduct);
+                addEditProduct.ShowDialog();
 
+            }
         }
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ProductsGrid.SelectedIndex >= 0)
+            {
+                CurrentProduct = ProductsGrid.SelectedItem as Product;
+                productService.RemoveProduct(CurrentProduct.Id);
+                ProductLabel.Content = "---";
+            }
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            AddEditProduct addEditProduct = new AddEditProduct(productService);
+            addEditProduct.ShowDialog();
         }
     }
 }
