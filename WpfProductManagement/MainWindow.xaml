@@ -30,7 +30,7 @@
         <Border Grid.Column="1" Visibility="Collapsed" Margin="2" Background="#E8F5E9" Name="EmployeesPanel" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Gray">
             <StackPanel HorizontalAlignment="Stretch" Background="#E8F5E9" Margin="15">
                 <Label HorizontalAlignment="Center" FontSize="46">Employee's Lists</Label>
-                <DataGrid Margin="5" Name="EmployeesGrid" ColumnWidth="*" CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="EmployeesGrid_SelectionChanged">
+                <DataGrid Margin="5" Name="EmployeesGrid" ColumnWidth="*"  CanUserAddRows="False" MinColumnWidth="100" CanUserResizeColumns="True" SelectionChanged="EmployeesGrid_SelectionChanged">
                     
                 </DataGrid>
                 <Grid Margin="5">

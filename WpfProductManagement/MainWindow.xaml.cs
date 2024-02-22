@@ -97,7 +97,13 @@ namespace WpfProductManagement
 
         private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
         {
+            if (EmployeesGrid.SelectedIndex >= 0)
+            {
+                CurrentEmployee = EmployeesGrid.SelectedItem as Employee;
+                AddEditEmployee addEditEmployee = new AddEditEmployee(employeeService, CurrentEmployee);
+                addEditEmployee.ShowDialog();
 
+            }
         }
 
         private void btnDeleteEmployee_Click(object sender, RoutedEventArgs e)
@@ -122,7 +128,7 @@ namespace WpfProductManagement
 
         private void btnEditCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void btnAddCustomer_Click(object sender, RoutedEventArgs e)
