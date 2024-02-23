@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfProductManagement"
         mc:Ignorable="d"
-        Title="AddEditEmployee" Height="550" Width="800">
+        Title="AddEditEmployee" Height="600" Width="800">
     <Grid>
         <StackPanel Margin="20">
             <DockPanel Margin="10">
@@ -18,7 +18,7 @@
             </DockPanel>
             <DockPanel Margin="10">
                 <Label Margin="10">PhoneNumber:</Label>
-                <TextBox HorizontalAlignment="Right" Width="500" Name="tbPhoneNumber"/>
+                <TextBox HorizontalAlignment="Right" Width="500" Name="tbPhoneNumber" TextChanged="tbPhoneNumber_TextChanged"/>
             </DockPanel>
             <DockPanel Margin="10">
                 <Label Margin="10">Address:</Label>
@@ -37,6 +37,7 @@
                 <Label Margin="10">Base Salary:</Label>
                 <TextBox HorizontalAlignment="Right" Width="500" Name="tbSalary"/>
             </DockPanel>
+            <Label Name="lblError" Foreground="PaleVioletRed" Margin="2" FontSize="18" HorizontalContentAlignment="Right"/>
             <DockPanel Margin="10" HorizontalAlignment="Right" >
                 <Button Background="PaleVioletRed" Margin="10" Height="50" Width="120" Name="btnCancel" Click="btnCancel_Click" >Cancel</Button>
                 <Button Background="GreenYellow" Margin="10" Height="50" Width="120" Name="btnOk" Click="btnOk_Click">Ok</Button>

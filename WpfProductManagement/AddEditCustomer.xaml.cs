@@ -49,34 +49,75 @@ namespace WpfProductManagement
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (isEdit)
+            bool isValid = true;
+            isValid = ValidateCustomer();
+            if (isValid)
             {
-                Customer customer = new Customer()
+                if (isEdit)
                 {
-                    Id = _editingCustomer.Id,
-                    FirstName = tbFirstName.Text,
-                    LastName = tbLastName.Text,
-                    Address = tbAddress.Text,
-                    PhoneNumber = Convert.ToUInt64(tbPhoneNumber.Text),
-                };
-                _customerService.EditCustomer(customer);
+                    Customer customer = new Customer()
+                    {
+                        Id = _editingCustomer.Id,
+                        FirstName = tbFirstName.Text,
+                        LastName = tbLastName.Text,
+                        Address = tbAddress.Text,
+                        PhoneNumber = Convert.ToUInt64(tbPhoneNumber.Text),
+                    };
+                    _customerService.EditCustomer(customer);
+                }
+                else
+                {
+                    Customer customer = new Customer()
+                    {
+                        Id = _customerService.GetNextId(),
+                        FirstName = tbFirstName.Text,
+                        LastName = tbLastName.Text,
+                        Address = tbAddress.Text,
+                        PhoneNumber = Convert.ToUInt64(tbPhoneNumber.Text),
+
+                    };
+                    _customerService.AddCustomer(customer);
+                }
+
+
+                this.Close();
+            }
+        }
+
+        private bool ValidateCustomer()
+        {
+
+            bool isValid = true;
+            string firstName = tbFirstName.Text.Trim().ToLower();
+            string lastName = tbLastName.Text.Trim().ToLower();
+            string address = tbAddress.Text.Trim().ToLower();
+            string phoneNumber = tbPhoneNumber.Text.Trim().ToLower();        
+            if (string.IsNullOrEmpty(firstName))
+            {
+                isValid = false;
+                lblError.Content = "**First Name is invalid!";
+            }
+            else if (string.IsNullOrEmpty(lastName))
+            {
+                isValid = false;
+                lblError.Content = "**Last Name is invalid!";
+            }
+            else if (!UInt64.TryParse(phoneNumber, out ulong p))
+            {
+                isValid = false;
+                lblError.Content = "**Phone number type is invalid!";
+            }
+            else if (string.IsNullOrEmpty(address))
+            {
+                isValid = false;
+                lblError.Content = "**Address is invalid!";
             }
             else
             {
-                Customer customer = new Customer()
-                {
-                    Id = _customerService.GetNextId(),
-                    FirstName = tbFirstName.Text,
-                    LastName = tbLastName.Text,
-                    Address = tbAddress.Text,
-                    PhoneNumber = Convert.ToUInt64(tbPhoneNumber.Text),
-                 
-                };
-                _customerService.AddCustomer(customer);
+                lblError.Content = "";
             }
 
-
-            this.Close();
+            return isValid;
         }
     }
 }

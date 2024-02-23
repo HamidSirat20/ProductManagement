@@ -28,6 +28,7 @@
                 <Label Margin="10">Count:</Label>
                 <TextBox HorizontalAlignment="Right" Width="500" Name="tbCount"/>
             </DockPanel>
+            <Label Name="lblError" Foreground="PaleVioletRed" Margin="2" FontSize="18" HorizontalContentAlignment="Right"/>
             <DockPanel Margin="10" HorizontalAlignment="Right" >
                 <Button Background="PaleVioletRed" Margin="10" Height="50" Width="120" Name="btnCancel" Click="btnCancel_Click" >Cancel</Button>
                 <Button Background="GreenYellow"   Margin="10" Height="50" Width="120" Name="btnOk" Click="btnOk_Click">Ok</Button>
