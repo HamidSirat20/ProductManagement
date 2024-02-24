@@ -5,6 +5,7 @@ namespace ProductManagement.Domain;
 
 public class ProductService
 {
+    private string path = @"./DBProduct.csv";
     public ObservableCollection<Product> _products { get; set; } = new ObservableCollection<Product>();
     public ProductService()
     {
@@ -14,62 +15,44 @@ public class ProductService
 
     private void ReadProducts()
     {
-        Product pr1 = new Product()
+        using (var reader = new StreamReader(path))
         {
-            Id = 1,
-            Name = "Product 1",
-            Description = "Good product",
-            Price = 100.00m,
-            Owner = "Owner 1",
-            Count = 10
-        };
+            _products.Clear();
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                string[] values = line.Split(';');
+                Product prod = new Product()
+                {
+                    Id = Convert.ToInt32(values[0]),
+                    Name = values[1],
+                    Description = values[2],
+                    Price = Convert.ToDecimal(values[3]),
+                    Owner = values[4],
+                    Count = Convert.ToInt32(values[5]),
+                };
 
-        Product pr2 = new Product()
+                _products.Add(prod);
+            }
+        }
+    }
+
+    private void SaveProduct()
+    {
+        using (var writer = new StreamWriter(path))
         {
-            Id = 2,
-            Name = "Product 2",
-            Description = "Better product",
-            Price = 150.00m,
-            Owner = "Owner 2",
-            Count = 5
-        };
-
-        Product pr3 = new Product()
-        {
-            Id = 3,
-            Name = "Product 3",
-            Description = "Best product",
-            Price = 200.00m,
-            Owner = "Owner 3",
-            Count = 8
-        };
-
-        Product pr4 = new Product()
-        {
-            Id = 4,
-            Name = "Product 4",
-            Description = "Excellent product",
-            Price = 250.00m,
-            Owner = "Owner 4",
-            Count = 4
-        };
-
-        Product pr5 = new Product()
-        {
-            Id = 5,
-            Name = "Product 5",
-            Description = "Exceptional product",
-            Price = 300.00m,
-            Owner = "Owner 5",
-            Count = 7
-        };
-
-        _products.Add(pr1);
-        _products.Add(pr2); 
-        _products.Add(pr3); 
-        _products.Add(pr4); 
-        _products.Add(pr4);
-
+            foreach (var product in _products)
+            {
+                string id = product.Id.ToString();
+                string name = product.Name;
+                string description = product.Description;
+                string price = product.Price.ToString();
+                string owner = product.Owner;
+                string count = product.Count.ToString();
+                string line = string.Format("{0};{1};{2};{3};{4};{5}", id, name, description, price, owner, count);
+                writer.WriteLine(line);
+            }
+        }
     }
     public void AddProduct(Product product)
     {
@@ -82,6 +65,7 @@ public class ProductService
             Console.WriteLine("Already exist!");
         }
         _products.Add(product);
+        SaveProduct();
     }
     public void RemoveProduct(int id) 
     {  
@@ -97,12 +81,14 @@ public class ProductService
         {
             _products.Remove(foundProduct);
         }
+        SaveProduct();
     }
     public void EditProduct(Product product)
     {
         var oldProduct = _products.First(t=>t.Id == product.Id);
         int index = _products.IndexOf(oldProduct);
         _products[index] = product;
+        SaveProduct();
     }
     public int GetNextId()
     {

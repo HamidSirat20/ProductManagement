@@ -1,9 +1,6 @@
 ﻿using ProductManagement.Domain;
 using ProductManagement.Domain.Models;
-using System.Drawing;
-using System.Net;
 using System.Windows;
-using System.Windows.Media;
 
 namespace WpfProductManagement;
 

@@ -1,8 +1,6 @@
 ﻿using ProductManagement.Domain.Models;
 using ProductManagement.Domain;
 using System.Windows;
-using System.Net;
-using System.Linq.Expressions;
 
 namespace WpfProductManagement;
 

@@ -5,6 +5,7 @@ namespace ProductManagement.Domain;
 
 public class EmployeeService
 {
+    private string path = @"./DBEmployee.csv";
     public ObservableCollection<Employee> Employees { get; set; } = new ObservableCollection<Employee>();
     public EmployeeService()
     {
@@ -14,57 +15,45 @@ public class EmployeeService
 
     private void ReadEmployees()
     {
-        Employee emp1 = new Employee()
+       using (var reader = new StreamReader(path))
         {
-            Id = 1,
-            FirstName = "John",
-            LastName = "Doe",
-            PhoneNumber = 1234567890,
-            Address = "123 Main St",
-            Department = Department.Production,
-            BaseSalary = 50000m
-        };
-
-        Employee emp2 = new Employee()
+            Employees.Clear();
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                string[] values = line.Split(';');
+                Enum.TryParse(values[5],out Department department);
+                Employee emp = new Employee()
+                {
+                    Id = Convert.ToInt32(values[0]),
+                    FirstName = values[1],
+                    LastName = values[2],
+                    PhoneNumber = Convert.ToUInt64(values[3]),
+                    Address = values[4],
+                    Department =department,
+                    BaseSalary = Convert.ToDecimal(values[6])
+                };
+                Employees.Add(emp);
+            }
+        }
+    }
+    private void SaveEmployees()
+    {
+        using (var writer = new StreamWriter(path))
         {
-            Id = 2,
-            FirstName = "Jane",
-            LastName = "Doe",
-            PhoneNumber = 0987654321,
-            Address = "456 Side St",
-            Department = Department.Sales,
-            BaseSalary = 55000m
-        };
-
-        Employee emp3 = new Employee()
-        {
-            Id = 3,
-            FirstName = "Jim",
-            LastName = "Beam",
-            PhoneNumber = 1122334455,
-            Address = "789 Wide St",
-            Department = Department.Advertisement,
-            BaseSalary = 52000m
-        };
-
-        Employee emp4 = new Employee()
-        {
-            Id = 4,
-            FirstName = "Jill",
-            LastName = "Hill",
-            PhoneNumber = 9988776655,
-            Address = "321 Narrow St",
-            Department = Department.Management,
-            BaseSalary = 60000m
-        };
-       
-        Employees.Add(emp1);
-        Employees.Add(emp2);
-        Employees.Add(emp3);
-        Employees.Add(emp4);
-       
-
-
+            foreach (var employee in Employees)
+            {
+                string Id = employee.Id.ToString();
+                string FirstName = employee.FirstName;
+                string LastName = employee.LastName;
+                string PhoneNumber = employee.PhoneNumber.ToString();
+                string Address = employee.Address;
+                string Department = employee.Department.ToString();
+                string baseSalary = employee.BaseSalary.ToString();
+                string line = string.Format("{0};{1};{2};{3};{4};{5};{6}",Id,FirstName,LastName,PhoneNumber,Address,Department,baseSalary);
+                writer.WriteLine(line);
+            }
+        }
     }
     public void AddEmployee(Employee employee)
     {
@@ -77,6 +66,7 @@ public class EmployeeService
             Console.WriteLine("Already exist!");
         }
         Employees.Add(employee);
+        SaveEmployees();
     }
     public void RemoveEmployee(int id)
     {
@@ -93,12 +83,14 @@ public class EmployeeService
         {
             Employees.Remove(foundEmployee);
         }
+        SaveEmployees() ;
     }
     public void EditEmployee(Employee employee)
     {
         var oldProduct = Employees.First(t => t.Id == employee.Id);
         int index = Employees.IndexOf(oldProduct);
         Employees[index] = employee;
+        SaveEmployees();
     }
     public int GetNextId()
     {

@@ -5,6 +5,7 @@ namespace ProductManagement.Domain;
 
 public class CustomerService
 {
+    private string path = @"./DBCustomer.csv";
     public ObservableCollection<Customer> customers { get; set; } = new ObservableCollection<Customer>();
     public CustomerService()
     {
@@ -14,46 +15,42 @@ public class CustomerService
 
     private void ReadCustomers()
     {
-        Customer cust1 = new Customer()
+        using (var reader = new StreamReader(path))
         {
-            Id = 1,
-            FirstName = "Alice",
-            LastName = "Johnson",
-            PhoneNumber = 12345678901,
-            Address = "100 Main St"
-        };
+            customers.Clear();
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                string[] values = line.Split(';');
+                Customer customer = new Customer()
+                {
+                    Id = Convert.ToInt32(values[0]),
+                    FirstName = values[1],
+                    LastName = values[2],
+                    PhoneNumber = Convert.ToUInt64(values[3]),
+                    Address = values[4]      
+                };
+                customers.Add(customer);
+            }
+        }
+    }
 
-        Customer cust2 = new Customer()
+    private void SaveEmployees()
+    {
+        using (var writer = new StreamWriter(path))
         {
-            Id = 2,
-            FirstName = "Bob",
-            LastName = "Smith",
-            PhoneNumber = 23456789012,
-            Address = "200 Oak St"
-        };
-
-        Customer cust3 = new Customer()
-        {
-            Id = 3,
-            FirstName = "Charlie",
-            LastName = "Brown",
-            PhoneNumber = 34567890123,
-            Address = "300 Pine St"
-        };
-
-        Customer cust4 = new Customer()
-        {
-            Id = 4,
-            FirstName = "Diana",
-            LastName = "Prince",
-            PhoneNumber = 45678901234,
-            Address = "400 Maple St"
-        };
-
-       customers.Add(cust1);
-        customers.Add(cust2);
-        customers.Add(cust3);
-        customers.Add(cust4);
+            foreach (var customer in customers)
+            {
+                string id = customer.Id.ToString();
+                string firstName = customer.FirstName;
+                string lastName = customer.LastName;
+                string phoneNumber = customer.PhoneNumber.ToString();
+                string address = customer.Address;
+               
+                string line = string.Format("{0};{1};{2};{3};{4}", id, firstName, lastName, phoneNumber, address);
+                writer.WriteLine(line);
+            }
+        }
     }
     public void AddCustomer(Customer customer)
     {
@@ -66,6 +63,7 @@ public class CustomerService
             Console.WriteLine("Already exist!");
         }
         customers.Add(customer);
+        SaveEmployees();
     }
     public void RemoveCustomer(int id)
     {
@@ -82,12 +80,14 @@ public class CustomerService
         {
             customers.Remove(foundEmployee);
         }
+        SaveEmployees();
     }
     public void EditCustomer(Customer customer)
     {
         var oldProduct = customers.First(t => t.Id == customer.Id);
         int index = customers.IndexOf(oldProduct);
         customers[index] = customer;
+        SaveEmployees();
     }
     public int GetNextId()
     {
